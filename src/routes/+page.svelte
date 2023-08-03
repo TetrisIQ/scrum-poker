@@ -1,14 +1,54 @@
 <script lang="ts">
-	import { Card, Button, Toggle } from 'flowbite-svelte';
+	import { goto } from '$app/navigation';
+	import Name from '$lib/components/modals/Name.svelte';
+	import { gun } from '$lib/gun/gunStore';
+	import { name } from '$lib/gun/localstore';
+	import { Card, Button, Toggle, Toast, A } from 'flowbite-svelte';
+	import { generateUsername } from 'unique-username-generator';
+
+	let nameModal = false;
+	let ShowToast = false;
+	async function onNameSubmit(e) {
+		$name = e.detail.name;
+		// Create a instant room
+		const roomName = generateUsername('-') + '-' + Math.floor(Math.random() * 999);
+		// check if room exists
+		// poker.room.name
+		const exists = await gun.get('poker').get('room').get(roomName);
+		if (exists) {
+			console.warn('Room with this name is existing, try to generate a new one');
+			// this could be bad, but we generate a new hopefully unique name
+			onNameSubmit(e);
+		}
+
+		goto(`/room/${roomName}`);
+	}
 </script>
 
+<Toast open={ShowToast}>
+	<svg
+		slot="icon"
+		aria-hidden="true"
+		class="w-5 h-5"
+		fill="currentColor"
+		viewBox="0 0 20 20"
+		xmlns="http://www.w3.org/2000/svg"
+		><path
+			fill-rule="evenodd"
+			d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
+			clip-rule="evenodd"
+		></path></svg
+	>
+	Set yourself free.
+</Toast>
 <h1 class="text-4xl p-4">Smoother and Faster Scrum Poker Planning.</h1>
-<p class="py-4">
+<p class="py-4 text-xl">
 	Plan and estimate your projects seamlessly with free Scrum poker rooms. No ads, no costs, just
-	instant set-up and future planning made easier
+	create an instant room and make your planning easier
 </p>
-<Button class="mb-8">Create Instant Room</Button>
-<div class="flex-row">
+<Name on:submit={onNameSubmit} show={nameModal} />
+<Button on:click={() => (nameModal = true)} class="mb-8">Create Instant Room</Button>
+<div class="flex-row space-y-6">
 	<Card img="/favicon.png" class="text-left m-2  mr-auto" horizontal>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			1. Preparation
@@ -41,13 +81,12 @@
 	</Card>
 	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-			4. Deck of Cards
+			4. Poddle Poker
 		</h5>
 		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
-			To facilitate the estimation process, a set of special cards, often called Planning Poker
-			cards, are used. These cards usually have numerical values representing relative effort,
-			complexity, or story points. The values typically include numbers like 0, 1, 2, 3, 5, 8, 13,
-			20, 40, 100, and "Infinity."
+			To facilitate the estimation process, you can create a room and share the link with our team.
+			If you have trouble to find a timeslot for your session. You can try out our Doodle
+			alternative at <A href="https://poddle.network" target="_blank">poddle.network</A>
 		</p>
 	</Card>
 	<Card img="/favicon.png" class="text-left m-2 mr-auto" horizontal>
@@ -56,8 +95,8 @@
 		</h5>
 		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
 			Once the user story is understood, each team member privately selects a Planning Poker card
-			representing their estimation of the effort required to complete the task. The cards are kept
-			face down until the estimation round is complete.
+			representing their estimation of the effort required to complete the task. The results are
+			hidden until the estimation round is complete.
 		</p>
 	</Card>
 	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
@@ -65,9 +104,8 @@
 			6. Reveal and Discussion
 		</h5>
 		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
-			After everyone has chosen a card, the team members simultaneously reveal their cards. If there
-			is a consensus (i.e., all team members selected the same card), that becomes the final
-			estimation.
+			After everyone has chosen a card, the results are displayed by a button click. If there is a
+			consensus (i.e., all team members selected the same card), that becomes the final estimation.
 		</p>
 	</Card>
 	<Card img="/favicon.png" class="text-left m-2 mr-auto" horizontal>

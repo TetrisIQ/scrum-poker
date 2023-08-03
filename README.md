@@ -29,3 +29,15 @@ npm run build
 ```
 
 Run the production build with `npm run start` or `node server`. To configure the production server, take a look at `server/index.js`
+
+## Data structure
+
+~ userspace
+\# frozen space
+name : generated room name
+
+## poker content
+
+poker.room.name.p.alice.value → the card alice selected
+poker.room.name.show → boolean if the results are shown
+poker.room.name.p.alice.watching → true if alice is only watching (alice cannot pick cards)
