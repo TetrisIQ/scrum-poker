@@ -5,6 +5,7 @@ COPY . .
 RUN npm install
 RUN npm run build
 
+RUN echo docker --version
 # Remove the dev dependencys
 RUN npm install --omit=dev
 
