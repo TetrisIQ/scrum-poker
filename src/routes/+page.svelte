@@ -1,81 +1,111 @@
 <script lang="ts">
-	import { messages } from '$lib/gun/gunStore';
-	import { onMount } from 'svelte';
-	import { gun } from '../lib/gun/gunStore';
-
-	import type { PageData } from './$types';
-
-	// The pageDatas are server side rendered (ssr)
-	export let data: PageData;
-	messages.set(data.chats); // Set the ssr data to a svelte store (to make it updateable in the ui)
-
-	onMount(async () => {
-		// Call the data with .on, if datas are updated in the network we will get the updated data and can display them
-		gun.get('chat').on((data) => {
-			if (data === undefined) {
-				return [];
-			}
-			$messages = JSON.parse(data.m);
-		});
-	});
-	let message: string;
-	function sendMessage() {
-		if (message !== '') {
-			$messages.push(message);
-			gun.get('chat').put({ m: JSON.stringify($messages) });
-			$messages = $messages;
-			message = '';
-		}
-	}
+	import { Card, Button, Toggle } from 'flowbite-svelte';
 </script>
 
-<div class="flex flex-col justify-center items-center space-y-1">
-	<div class="item h-32"><h1 class="text-3xl font-bold underline">SvelteKit / GUN example</h1></div>
-
-	{#if $messages !== undefined}
-		{#each $messages as comment}
-			<div class="flex my-4 gap-4">
-				<div class="text-right col-end-2">
-					<span class="text-gray-500">Someone said </span>
-				</div>
-				<div class="text-left ml-2 col-start-2 col-end-4">
-					<span class="">{comment}</span>
-				</div>
-			</div>
-		{/each}
-	{/if}
-
-	<div class="flex mx-auto items-center justify-center mt-t max-w-lg">
-		<form
-			on:submit|preventDefault={sendMessage}
-			class="w-full max-w-xl dark:bg-gray-700 bg-white rounded-lg px-4 pt-2"
-		>
-			<div class="flex flex-wrap -mx-3 mb-6">
-				<div class="w-full md:w-full px-3 mb-2 mt-2">
-					<textarea
-						bind:value={message}
-						class="bg-gray-100 dark:bg-gray-200 dark:text-black rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-						name="body"
-						placeholder="Type Your Comment"
-						required
-					/>
-				</div>
-				<div class="w-full flex items-start md:w-full px-3">
-					<div class="-mr-1">
-						<input
-							type="submit"
-							class="inline-flex items-center dark:bg-gray-800 bg-gray-300 border-0 py-1 px-3 focus:outline-none dark:hover:bg-gray-700 hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
-							value="Post Comment"
-						/>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
+<h1 class="text-4xl p-4">Smoother and Faster Scrum Poker Planning.</h1>
+<p class="py-4">
+	Plan and estimate your projects seamlessly with free Scrum poker rooms. No ads, no costs, just
+	instant set-up and future planning made easier
+</p>
+<Button class="mb-8">Create Instant Room</Button>
+<div class="flex-row">
+	<Card img="/favicon.png" class="text-left m-2  mr-auto" horizontal>
+		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+			1. Preparation
+		</h5>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+			Before the Scrum Poker session, the product backlog should be ready, and user stories or tasks
+			that need to be estimated are identified. These user stories should have been well-defined and
+			broken down into smaller, manageable pieces.
+		</p>
+	</Card>
+	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
+		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+			2. Team Setup
+		</h5>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+			The Scrum team, including the Product Owner, Scrum Master, and development team members,
+			gather for the estimation session. The ideal team size is usually between five to nine members
+			to ensure effective collaboration.
+		</p>
+	</Card>
+	<Card img="/favicon.png" class="text-left m-2 mr-auto" horizontal>
+		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+			3. Estimation Process
+		</h5>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+			The Scrum Poker session typically starts with the Product Owner or Scrum Master presenting a
+			user story or task that needs to be estimated. Each user story is discussed to ensure that all
+			team members understand its requirements and scope.
+		</p>
+	</Card>
+	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
+		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+			4. Deck of Cards
+		</h5>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+			To facilitate the estimation process, a set of special cards, often called Planning Poker
+			cards, are used. These cards usually have numerical values representing relative effort,
+			complexity, or story points. The values typically include numbers like 0, 1, 2, 3, 5, 8, 13,
+			20, 40, 100, and "Infinity."
+		</p>
+	</Card>
+	<Card img="/favicon.png" class="text-left m-2 mr-auto" horizontal>
+		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+			5. Individual Estimation
+		</h5>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+			Once the user story is understood, each team member privately selects a Planning Poker card
+			representing their estimation of the effort required to complete the task. The cards are kept
+			face down until the estimation round is complete.
+		</p>
+	</Card>
+	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
+		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+			6. Reveal and Discussion
+		</h5>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+			After everyone has chosen a card, the team members simultaneously reveal their cards. If there
+			is a consensus (i.e., all team members selected the same card), that becomes the final
+			estimation.
+		</p>
+	</Card>
+	<Card img="/favicon.png" class="text-left m-2 mr-auto" horizontal>
+		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+			7. Discussion of Divergent Estimations
+		</h5>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+			If there is a wide range of estimations, the team engages in a discussion to understand the
+			reasoning behind the various estimates. This discussion helps identify any misunderstandings,
+			risks, or additional considerations related to the user story.
+		</p>
+	</Card>
+	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
+		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+			8. Re-Estimation (Optional)
+		</h5>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+			Based on the discussion, team members may revise their initial estimations and select new
+			cards. The process of discussion and re-estimation continues until a consensus is reached, or
+			until the team decides to escalate the issue to the Product Owner for clarification.
+		</p>
+	</Card>
+	<Card img="/favicon.png" class="text-left m-2 mr-auto" horizontal>
+		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+			9. Recording the Estimations
+		</h5>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+			The final estimation agreed upon by the team is recorded for the user story. It's important to
+			document these estimates for future reference, planning, and tracking progress.
+		</p>
+	</Card>
+	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
+		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+			10. Next User Story
+		</h5>
+		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
+			The process continues with the next user story or task in the backlog until all items are
+			estimated.
+		</p>
+	</Card>
 </div>
-
-<style lang="postcss">
-	:global(html) {
-		background-color: theme(colors.gray.100);
-	}
-</style>
