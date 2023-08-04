@@ -27,6 +27,8 @@
 	onMount(async () => {
 		if ($name === '') {
 			showNameModal = true;
+		} else {
+			handleClick('X');
 		}
 		await gun
 			.get('poker')
@@ -34,21 +36,21 @@
 			.get($page.params.name)
 			.open((res) => (results = res));
 	});
-	function toggleShowResults() {
+	function toggleShowResults(status = undefined) {
 		// poker.room.name.show
-		const state = results.show;
+		const state = status === undefined ? results.show : status;
 		gun
 			.get('poker')
 			.get('room')
 			.get($page.params.name)
-			.put({ show: state === undefined ? false : !state });
+			.put({ show: state === undefined ? true : !state });
 	}
 
 	function deleteEstimation() {
 		Object.keys(results.p).forEach((element) => {
-			gun.get('poker').get('room').get($page.params.name).get('p').get(element).put({ value: '' });
+			gun.get('poker').get('room').get($page.params.name).get('p').get(element).put({ value: 'X' });
 		});
-		toggleShowResults();
+		toggleShowResults(true);
 	}
 </script>
 
@@ -57,6 +59,7 @@
 	show={showNameModal}
 	on:submit={(e) => {
 		name.set(e.detail.name);
+		handleClick('X');
 		showNameModal = false;
 	}}
 />
@@ -71,7 +74,7 @@
 <h3 class="text-xl font-bold mt-12 mb-6">Results:</h3>
 <div class="my-2 flex justify-between">
 	<Button on:click={deleteEstimation}>Delete estimations</Button>
-	<Button on:click={toggleShowResults} color="light">Show</Button>
+	<Button on:click={() => toggleShowResults()} color="light">Show</Button>
 </div>
 <Table>
 	<TableHead>
@@ -86,8 +89,32 @@
 					<TableBodyCell>
 						{#if results.show}
 							{v.value}
+						{:else if v.value !== 'X'}
+							<!-- Estimated -->
+							<svg
+								class="w-6 h-6 text-gray-800 dark:text-white fill-green-600"
+								aria-hidden="true"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+							>
+								<path
+									d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"
+								/>
+							</svg>
 						{:else}
-							-
+							<!-- Not estimated -->
+							<svg
+								class="w-6 h-6 text-gray-800 dark:text-white fill-primary-600"
+								aria-hidden="true"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+							>
+								<path
+									d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"
+								/>
+							</svg>
 						{/if}
 					</TableBodyCell>
 				</TableBodyRow>
