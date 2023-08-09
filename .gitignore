@@ -11,3 +11,6 @@ vite.config.ts.timestamp-*
 data
 data.json
 radata
+
+# Sentry Auth Token
+.sentryclirc

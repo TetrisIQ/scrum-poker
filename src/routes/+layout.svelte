@@ -1,4 +1,5 @@
 <script>
+	// @ts-nocheck
 	import {
 		Button,
 		Input,
@@ -15,6 +16,7 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import Logo from '$lib/components/Logo.svelte';
+	import { handleError } from '../hooks.client';
 	$: showRoomShare = $page.params?.name !== undefined;
 	let share = false;
 	let value = '';
@@ -29,6 +31,8 @@
 		}
 	}
 </script>
+
+<svelte:window on:error={handleError} />
 
 <Navbar let:hidden let:toggle>
 	<NavBrand href="/">

@@ -35,6 +35,7 @@
 			.get('room')
 			.get($page.params.name)
 			.open((res) => (results = res));
+		handleClick('X'); // show new users
 	});
 	function toggleShowResults(status = undefined) {
 		// poker.room.name.show
