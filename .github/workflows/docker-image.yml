@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: configure Sentry
-        run: echo ${{ secrets.sentryToken }} > .sentryclirc
+        run: echo ${{ secrets.sentryToken }} > ${{github.path}}.sentryclirc
       - run: ls
 
       # https://github.com/marketplace/actions/push-to-ghcr
