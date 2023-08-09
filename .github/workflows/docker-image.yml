@@ -18,7 +18,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: docker --version
+      - name: configure Sentry
+        run: echo ${{ secrets.sentryToken }} > .sentryclirc
 
       # https://github.com/marketplace/actions/push-to-ghcr
       - name: Build and publish a Docker image for ${{ github.repository }}
