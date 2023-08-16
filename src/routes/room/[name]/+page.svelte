@@ -16,7 +16,7 @@
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 
-	export let data: PageData;
+	// export let data: PageData;
 	let showNameModal = false;
 	let cartValues = ['?', '0', '0.5', '1', '2', '3', '5', '8', '13', '20', '40', '100'];
 	function handleClick(value) {
