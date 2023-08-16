@@ -18,10 +18,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: configure Sentry
-        run: echo ${{ secrets.sentryToken }} > /.sentryclirc
-      - run: ls
-
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          SENTRY_URL: https://glitchtip.poddle.network
+        with:
+          environment: production
+          
       # https://github.com/marketplace/actions/push-to-ghcr
       - name: Build and publish a Docker image for ${{ github.repository }}
         uses: tetrisiq/push-to-ghcr@master
