@@ -18,10 +18,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: configure Sentry
-        run: echo ${{ secrets.sentryToken }} > /.sentryclirc
-      - run: ls
-
+      - name: Setup Sentry CLI
+        uses: mathieu-bour/setup-sentry-cli@v1
+        with:
+          version: latest # optional if 'latest'
+          url: https://glitchtip.poddle.network/
+          token: ${{ SECRETS.SENTRY_AUTH_TOKEN }} # from GitHub secrets
+          organization: poddle
+          project: poker
+          
       # https://github.com/marketplace/actions/push-to-ghcr
       - name: Build and publish a Docker image for ${{ github.repository }}
         uses: tetrisiq/push-to-ghcr@master
