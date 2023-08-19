@@ -35,7 +35,7 @@
 		"@sentry/sveltekit": "^7.61.1",
 		"express": "^4.18.2",
 		"flowbite": "^1.8.1",
-		"flowbite-svelte": "^0.40.2",
+		"flowbite-svelte": "^0.44.0",
 		"gun": "^0.2020.1239",
 		"svelte-local-storage-store": "^0.5.0",
 		"tailwind-merge": "^1.14.0",
