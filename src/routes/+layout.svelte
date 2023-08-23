@@ -10,16 +10,20 @@
 		Navbar,
 		Toast,
 		DarkMode,
-		P
+		P,
+		Alert
 	} from 'flowbite-svelte';
 	import '../app.css';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import Logo from '$lib/components/Logo.svelte';
 	import { handleError } from '../hooks.client';
+	import { onMount } from 'svelte';
+	import { testConnection } from '$lib/gun/gunStore';
 	$: showRoomShare = $page.params?.name !== undefined;
 	let share = false;
 	let value = '';
+	let showConnectionFailed = false;
 	function shareRoom() {
 		share = true;
 		setTimeout(() => (share = false), 3000);
@@ -29,6 +33,16 @@
 		if (value !== '') {
 			goto(`/room/${value}`);
 		}
+	}
+	onMount(() => {
+		testConnection().onerror = function (event) {
+			showConnectionFailed = true;
+		};
+	});
+	function catchConnectionFailed(event, souce, lineno, colon, error) {
+		console.log(event, event);
+		//@ts-ignore
+		return { error, event };
 	}
 </script>
 
@@ -74,6 +88,10 @@
 		<!-- <NavLi href="/contact">Language</NavLi> -->
 	</NavUl>
 </Navbar>
+<Alert class="{showConnectionFailed ? 'block' : 'hidden'} text-center" color="red">
+	<span class="font-bold">Connection failed!</span>
+	Connection was not possible, maybe try to turn off your vpn or disable your proxy.
+</Alert>
 <div class="w-1/2 mx-auto text-center mb-16">
 	<slot />
 </div>
