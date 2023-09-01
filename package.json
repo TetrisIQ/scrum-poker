@@ -14,20 +14,20 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.35.1",
+		"@playwright/test": "^1.37.1",
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/adapter-node": "^1.2.3",
 		"@sveltejs/kit": "^1.5.0",
 		"@types/express": "^4.17.17",
-		"autoprefixer": "^10.4.14",
-		"postcss": "^8.4.21",
-		"prettier": "^3.0.0",
+		"autoprefixer": "^10.4.15",
+		"postcss": "^8.4.29",
+		"prettier": "^3.0.3",
 		"prettier-plugin-svelte": "^3.0.3",
-		"svelte": "^4.0.0",
-		"svelte-check": "^3.0.1",
-		"tailwindcss": "^3.3.2",
-		"tslib": "^2.4.1",
-		"typescript": "^5.0.0"
+		"svelte": "^4.2.0",
+		"svelte-check": "^3.5.1",
+		"tailwindcss": "^3.3.3",
+		"tslib": "^2.6.2",
+		"typescript": "^5.2.2"
 	},
 	"type": "module",
 	"dependencies": {
@@ -35,9 +35,9 @@
 		"@sentry/sveltekit": "^7.61.1",
 		"express": "^4.18.2",
 		"flowbite": "^1.8.1",
-		"flowbite-svelte": "^0.40.2",
+		"flowbite-svelte": "^0.44.2",
 		"gun": "^0.2020.1239",
-		"svelte-local-storage-store": "^0.5.0",
+		"svelte-local-storage-store": "^0.6.0",
 		"tailwind-merge": "^1.14.0",
 		"unique-username-generator": "^1.2.0"
 	}
