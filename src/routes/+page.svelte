@@ -49,7 +49,11 @@
 <Name on:submit={onNameSubmit} show={nameModal} />
 <Button on:click={() => (nameModal = true)} class="mb-8">Create Instant Room</Button>
 <div class="flex-row space-y-6">
-	<Card img="/favicon.png" class="text-left m-2  mr-auto" horizontal>
+	<Card
+		img="/images/undraw/01undraw_preparation_re_t0ce.svg"
+		class="text-left m-2 card mr-auto"
+		horizontal
+	>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			1. Preparation
 		</h5>
@@ -59,7 +63,11 @@
 			broken down into smaller, manageable pieces.
 		</p>
 	</Card>
-	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
+	<Card
+		img="/images/undraw/02undraw_team_spirit_re_yl1v.svg"
+		class="text-left m-2 card ml-auto"
+		horizontal
+	>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			2. Team Setup
 		</h5>
@@ -69,7 +77,11 @@
 			to ensure effective collaboration.
 		</p>
 	</Card>
-	<Card img="/favicon.png" class="text-left m-2 mr-auto" horizontal>
+	<Card
+		img="/images/undraw/03undraw_professor_re_mj1s.svg"
+		class="text-left m-2 card mr-auto"
+		horizontal
+	>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			3. Estimation Process
 		</h5>
@@ -79,7 +91,7 @@
 			team members understand its requirements and scope.
 		</p>
 	</Card>
-	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
+	<Card img="/favicon.png" class="text-left m-2 card ml-auto" horizontal>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			4. Poddle Poker
 		</h5>
@@ -89,7 +101,11 @@
 			alternative at <A href="https://poddle.network" target="_blank">poddle.network</A>
 		</p>
 	</Card>
-	<Card img="/favicon.png" class="text-left m-2 mr-auto" horizontal>
+	<Card
+		img="/images/undraw/05undraw_election_day_w842.svg"
+		class="text-left m-2 card mr-auto"
+		horizontal
+	>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			5. Individual Estimation
 		</h5>
@@ -99,7 +115,11 @@
 			hidden until the estimation round is complete.
 		</p>
 	</Card>
-	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
+	<Card
+		img="/images/undraw/06undraw_conversation_re_c26v.svg"
+		class="text-left m-2 card ml-auto"
+		horizontal
+	>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			6. Reveal and Discussion
 		</h5>
@@ -108,7 +128,11 @@
 			consensus (i.e., all team members selected the same card), that becomes the final estimation.
 		</p>
 	</Card>
-	<Card img="/favicon.png" class="text-left m-2 mr-auto" horizontal>
+	<Card
+		img="/images/undraw/07undraw_meeting_re_i53h.svg"
+		class="text-left m-2 card mr-auto"
+		horizontal
+	>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			7. Discussion of Divergent Estimations
 		</h5>
@@ -118,7 +142,7 @@
 			risks, or additional considerations related to the user story.
 		</p>
 	</Card>
-	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
+	<Card img="/images/undraw/08undraw_voting_nvu7.svg" class="text-left m-2 card ml-auto" horizontal>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			8. Re-Estimation (Optional)
 		</h5>
@@ -128,7 +152,11 @@
 			until the team decides to escalate the issue to the Product Owner for clarification.
 		</p>
 	</Card>
-	<Card img="/favicon.png" class="text-left m-2 mr-auto" horizontal>
+	<Card
+		img="/images/undraw/09undraw_add_content_re_vgqa.svg"
+		class="text-left m-2 card mr-auto"
+		horizontal
+	>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			9. Recording the Estimations
 		</h5>
@@ -137,7 +165,11 @@
 			document these estimates for future reference, planning, and tracking progress.
 		</p>
 	</Card>
-	<Card img="/favicon.png" class="text-left m-2 ml-auto" horizontal>
+	<Card
+		img="/images/undraw/10undraw_step_to_the_sun_nxqq.svg"
+		class="text-left m-2 card ml-auto"
+		horizontal
+	>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			10. Next User Story
 		</h5>
@@ -147,3 +179,11 @@
 		</p>
 	</Card>
 </div>
+
+<style>
+	:global(.card > img) {
+		height: fit-content;
+		margin-top: auto;
+		margin-bottom: auto;
+	}
+</style>
