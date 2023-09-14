@@ -1,7 +1,7 @@
 name: Integration
 on:
   workflow_dispatch:
-  # push:
+  push:
 
 jobs:
   test_on_node_versions:
