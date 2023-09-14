@@ -23,4 +23,5 @@ scan:
   quiet: false
   scanner:
     - sast
+    - secrets
   skip-path: []
