@@ -19,6 +19,7 @@ jobs:
         uses: bearer/bearer-action@v2
         with:
           config-file: bearer.yml
+          format: sarif
           output: results.sarif
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
