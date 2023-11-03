@@ -38,7 +38,7 @@
 		"flowbite-svelte": "^0.44.2",
 		"gun": "^0.2020.1239",
 		"svelte-local-storage-store": "^0.6.0",
-		"tailwind-merge": "^1.14.0",
+		"tailwind-merge": "^2.0.0",
 		"unique-username-generator": "^1.2.0"
 	}
 }
