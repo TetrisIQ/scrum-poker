@@ -9,14 +9,12 @@
 		TableHead,
 		TableHeadCell
 	} from 'flowbite-svelte';
-	import type { PageData } from './$types';
 	import { name } from '$lib/gun/localstore';
 	import Name from '$lib/components/modals/Name.svelte';
 	import { gun } from '$lib/gun/gunStore';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 
-	// export let data: PageData;
 	let showNameModal = false;
 	let cartValues = ['?', '0', '0.5', '1', '2', '3', '5', '8', '13', '20', '40', '100'];
 	function handleClick(value) {
