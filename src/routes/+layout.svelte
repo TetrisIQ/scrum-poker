@@ -17,7 +17,7 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import Logo from '$lib/components/Logo.svelte';
-	import { handleError } from '../hooks.client';
+	// import { handleError } from '../hooks.client';
 	import { onMount } from 'svelte';
 	import { testConnection } from '$lib/gun/gunStore';
 	$: showRoomShare = $page.params?.name !== undefined;
