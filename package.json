@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"scripts": {
 		"dev": "node server/dev/index.js",
-		"build": "mkdir .vercel/output/functions/fn.func/node_modules/gun/lib/text-encoding && cp -r node_modules/gun/lib/text-encoding/ .vercel/output/functions/fn.func/node_modules/gun/lib/text-encoding/ && vite build",
+		"build": "vite build && mkdir .vercel/output/functions/fn.func/node_modules/gun/lib/text-encoding && cp -r node_modules/gun/lib/text-encoding/ .vercel/output/functions/fn.func/node_modules/gun/lib/text-encoding/",
 		"start": "node server/index.js",
 		"preview": "node server/index.js",
 		"build:preview": "npm run build && npm run start",
