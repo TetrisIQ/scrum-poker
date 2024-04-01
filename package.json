@@ -39,6 +39,7 @@
 		"gun": "^0.2020.1239",
 		"svelte-local-storage-store": "^0.6.0",
 		"tailwind-merge": "^2.0.0",
+		"text-encoding": "^0.7.0",
 		"unique-username-generator": "^1.2.0"
 	}
 }
