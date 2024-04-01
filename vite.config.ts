@@ -1,4 +1,4 @@
-import { sentrySvelteKit } from '@sentry/sveltekit';
+// import { sentrySvelteKit } from '@sentry/sveltekit';
 import type { SentrySvelteKitPluginOptions } from '@sentry/sveltekit/types/vite/sentryVitePlugins';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
@@ -6,15 +6,15 @@ import type { Plugin } from 'vite';
 
 export default defineConfig({
 	plugins: [
-		import.meta.url.includes('private')
-			? sentrySvelteKit({
-					sourceMapsUploadOptions: {
-						org: 'poddle',
-						project: 'poker',
-						url: 'https://glitchtip.poddle.network/'
-					}
-			  })
-			: pass(),
+		// import.meta.url.includes('private')
+		// 	? sentrySvelteKit({
+		// 			sourceMapsUploadOptions: {
+		// 				org: 'poddle',
+		// 				project: 'poker',
+		// 				url: 'https://glitchtip.poddle.network/'
+		// 			}
+		// 	  })
+		// 	: pass(),
 		sveltekit()
 	],
 	server: {
@@ -23,12 +23,12 @@ export default defineConfig({
 	}
 });
 
-function pass(options?: SentrySvelteKitPluginOptions): Promise<Plugin[]> {
-	return new Promise((resolveOuter) => {
-		resolveOuter(
-			new Promise((resolveInner) => {
-				setTimeout(resolveInner, 1000);
-			})
-		);
-	});
-}
+// function pass(options?: SentrySvelteKitPluginOptions): Promise<Plugin[]> {
+// 	return new Promise((resolveOuter) => {
+// 		resolveOuter(
+// 			new Promise((resolveInner) => {
+// 				setTimeout(resolveInner, 1000);
+// 			})
+// 		);
+// 	});
+// }
