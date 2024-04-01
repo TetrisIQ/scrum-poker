@@ -2,7 +2,7 @@
 // import type { SentrySvelteKitPluginOptions } from '@sentry/sveltekit/types/vite/sentryVitePlugins';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import type { Plugin } from 'vite';
+// import type { Plugin } from 'vite';
 
 export default defineConfig({
 	plugins: [
