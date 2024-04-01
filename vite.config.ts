@@ -1,5 +1,5 @@
 // import { sentrySvelteKit } from '@sentry/sveltekit';
-import type { SentrySvelteKitPluginOptions } from '@sentry/sveltekit/types/vite/sentryVitePlugins';
+// import type { SentrySvelteKitPluginOptions } from '@sentry/sveltekit/types/vite/sentryVitePlugins';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import type { Plugin } from 'vite';
