@@ -17,7 +17,7 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import Logo from '$lib/components/Logo.svelte';
-	// import { handleError } from '../hooks.client';
+	import { handleError } from '../hooks.client';
 	import { onMount } from 'svelte';
 	import { testConnection } from '$lib/gun/gunStore';
 	$: showRoomShare = $page.params?.name !== undefined;
@@ -39,14 +39,8 @@
 			showConnectionFailed = true;
 		};
 	});
-	function catchConnectionFailed(event, souce, lineno, colon, error) {
-		console.log(event, event);
-		//@ts-ignore
-		return { error, event };
-	}
 </script>
 
-<svelte:window on:error={handleError} />
 
 <Navbar let:hidden let:toggle>
 	<NavBrand href="/">
